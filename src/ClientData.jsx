@@ -10,6 +10,7 @@ import {
 import AddUser from "./AddUser";
 import InfoModal from "./InfoModal";
 import EditableCell from "./EditableCell";
+import{ Pencil, Trash, Save} from 'lucide-react';
 
 function ClientData() {
   const [isAddUser, setIsAddUser] = useState(false);
@@ -40,6 +41,12 @@ function ClientData() {
     setIsShowModal(true);
     setSelectedNodeIdForModalView(id);
   };
+
+  const handleDelete = (id) => {
+    const data = allUserData;
+    delete data[id];
+    setAllUserData({ ...data });
+  }
 
   // sample data Format
   // const dataTest = {
@@ -149,9 +156,16 @@ function ClientData() {
                 <TableCell>
                   <button
                     onClick={() => handleClick(data.id)}
-                    className="font-medium text-cyan-600 hover:underline dark:text-cyan-500 text-xl"
+                    className="font-medium bg-cyan-500 text-gray-800 hover:bg-cyan-600 dark:text-cyan-500 text-xl mx-2 py-2 px-4 rounded"
                   >
-                    {isEditing && editingNodeId === key ? "Save" : "Edit"}
+                    {isEditing && editingNodeId === key ? <Save /> : <Pencil />}
+                  </button>
+
+                  <button
+                    onClick={() => handleDelete(data.id)}
+                    className="font-medium bg-red-500 text-gray-800 hover:bg-red-600 dark:text-cyan-500 text-xl mx-2 py-2 px-4 rounded"
+                  >
+                    <Trash />
                   </button>
                 </TableCell>
               </TableRow>
