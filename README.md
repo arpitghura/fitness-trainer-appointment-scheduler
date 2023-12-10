@@ -14,9 +14,6 @@ The Fitness Trainer Appointment Scheduling Website is made using React.
 
 ## Installation
 
-
-## Installation
-
 Install fitness-trainer-appointment-scheduler with npm
 
 1. Fork and clone the repo

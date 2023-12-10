@@ -1,6 +1,6 @@
 import React from "react";
 
-const InfoModal = ( { setIsShowModal , userData}) => {
+const InfoModal = ( { setIsShowModal , userData, selectedID }) => {
   return (
     <div className="fixed w-full h-full top-0 left-0 flex items-center justify-center">
       <div className="absolute w-full h-full bg-gray-900 opacity-50"></div>
@@ -11,22 +11,28 @@ const InfoModal = ( { setIsShowModal , userData}) => {
             <p className="text-2xl font-bold">User Details</p>
           </div>
           <div className="mb-2">
-            <p className="text-sm font-semibold text-gray-600">First Name:</p>
-            <p className="text-lg font-medium text-black">
-              {userData.firstName}
+            <p className="text-sm font-semibold text-gray-400">First Name:</p>
+            <p className="text-base font-medium text-black">
+              {userData[selectedID].firstName}
             </p>
           </div>
           <div className="mb-2">
-            <p className="text-sm font-semibold text-gray-600">Last Name:</p>
-            <p className="text-lg font-medium text-black"></p>
+            <p className="text-sm font-semibold text-gray-400">Last Name:</p>
+            <p className="text-base font-medium text-black">
+            {userData[selectedID].lastName}
+            </p>
           </div>
           <div className="mb-2">
-            <p className="text-sm font-semibold text-gray-600">Location:</p>
-            <p className="text-lg font-medium text-black"></p>
+            <p className="text-sm font-semibold text-gray-400">Location:</p>
+            <p className="text-base font-medium text-black">
+            {userData[selectedID].location}
+            </p>
           </div>
           <div className="mb-2">
-            <p className="text-sm font-semibold text-gray-600">Appointments:</p>
-            <p className="text-lg font-medium text-black"></p>
+            <p className="text-sm font-semibold text-gray-400">Appointments:</p>
+            <p className="text-base font-medium text-black">
+            {userData[selectedID].appointments}
+            </p>
           </div>
 
           <div className="mt-4 flex justify-end">

@@ -19,6 +19,7 @@ function ClientData() {
   const [allUserData, setAllUserData] = useState({});
 
   const [editingNodeId, setEditingNodeId] = useState(null);
+  const [selectedNodeIdForModalView, setSelectedNodeIdForModalView] = useState(null)
 
   const updateItem = (id, value, fieldName) => {
     console.log(id, value, fieldName);
@@ -33,6 +34,11 @@ function ClientData() {
     setIsEditing((prevState) => !prevState); // Update isEditing
     setEditingNodeId(id); // Update editingNodeId
   };
+
+  const handleModalView = (id) => {
+    setIsShowModal(true);
+    setSelectedNodeIdForModalView(id)
+  }
 
   // const dataTest = {
   //   abc: {
@@ -134,7 +140,7 @@ function ClientData() {
                     })}
                     <button
                       className="text-blue-500 font-semibold italic hover:text-green-500 hover:underline"
-                      onClick={() => setIsShowModal(true)}
+                      onClick={() => handleModalView(key)}
                     >
                       View All
                     </button>
@@ -176,7 +182,7 @@ function ClientData() {
       </div>
 
       {isShowModal && (
-        <InfoModal setIsShowModal={setIsShowModal} userData={allUserData} />
+        <InfoModal setIsShowModal={setIsShowModal} userData={allUserData} selectedID={selectedNodeIdForModalView}/>
       )}
     </div>
   );
