@@ -8,10 +8,12 @@ const AddUser = ({ setIsAddUser, allusers, setAllUsers }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [location, setLocation] = useState("");
-  const [appointments, setAppointments] = useState([]);
+
+  const [dateOfAppointment, setDateOfAppointment] = useState('')
+  const [timeOfAppointment, setTimeOfAppointment] = useState('')
 
   const generateObject = (id, firstName, lastName, location) => {
-    const appointments = [];
+    const appointments = [{ date: dateOfAppointment, time: timeOfAppointment, key: crypto.randomUUID()}]; 
 
     return Object.assign(
       {},
@@ -30,15 +32,15 @@ const AddUser = ({ setIsAddUser, allusers, setAllUsers }) => {
       firstName !== "" &&
       lastName !== "" &&
       location !== "" &&
-      appointments !== ""
+      dateOfAppointment !== "" &&
+      timeOfAppointment !== ""
     ) {
       const id = crypto.randomUUID();
       userData[id] = generateObject(
         id,
         firstName,
         lastName,
-        location,
-        appointments
+        location
       );
       setAllUsers({ ...allusers, ...userData });
       console.log(allusers);
@@ -89,12 +91,8 @@ const AddUser = ({ setIsAddUser, allusers, setAllUsers }) => {
           name="appointments"
           className="p-2 rounded-xl font-normal text-base mr-2"
           placeholder="Choose Appointment Date and Time"
-          value={appointments.appointmentDate}
-          onChange={(e) =>
-            setAppointments({
-              appointmentDate: e.target.value,
-            })
-          }
+          value={dateOfAppointment}
+          onChange={(e) => setDateOfAppointment(e.target.value) }
         />
         <input
           type="time"
@@ -102,13 +100,8 @@ const AddUser = ({ setIsAddUser, allusers, setAllUsers }) => {
           step={1}
           className="p-2 rounded-xl font-normal text-base md:mt-2"
           placeholder="Choose Appointment Date and Time"
-          value={appointments.appointmentTime}
-          onChange={(e) =>
-            setAppointments({
-              ...appointments,
-              appointmentTime: e.target.value,
-            })
-          }
+          value={timeOfAppointment}
+          onChange={(e) => setTimeOfAppointment(e.target.value) }
         />
       </TableCell>
       <TableCell className="w-1/12">

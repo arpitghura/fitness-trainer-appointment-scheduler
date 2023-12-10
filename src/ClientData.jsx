@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import {
   Table,
   TableBody,
@@ -41,6 +41,7 @@ function ClientData() {
     setSelectedNodeIdForModalView(id);
   };
 
+  // sample data Format
   // const dataTest = {
   //   abc: {
   //     id: "s1",
@@ -51,11 +52,8 @@ function ClientData() {
   //     noOfAppointments: "2",
   //     appointments: [
   //       {
-  //         id: "A1",
   //         date: "2021-01-01",
-  //         time: "10:00 AM",
-  //         duration: "30",
-  //         status: "Completed",
+  //         time: "10:00",
   //         key: crypto.randomUUID(),
   //       },
   //     ],
@@ -74,9 +72,10 @@ function ClientData() {
       localStorage.setItem("appointments", JSON.stringify({ ...allUserData }));
     }
   }, [allUserData]);
+
   return (
     <div className="flex p-4 flex-col">
-      <h1 className="font-bold text-2xl ">
+      <h1 className="font-bold text-2xl">
         Welcome to Fitness Trainer Appointment Scheduler
       </h1>
       <Table hoverable className="w-full">
@@ -106,7 +105,6 @@ function ClientData() {
                     editingNodeId={editingNodeId}
                   />
                 </TableCell>
-
                 <TableCell className="text-lg">
                   <EditableCell
                     value={data.lastName}
@@ -130,21 +128,22 @@ function ClientData() {
                 <TableCell>
                   <span className="text-base">
                     <span className="text-blue-500 font-semibold">
-                      {/* {data.noOfAppointments} Appointments */}
+                      {data.appointments.length} Appointments
                     </span>
-                    {data.appointments.map((appointment) => {
+                    {(data.appointments.length > 0) && (data.appointments.map((appointment) => {
                       return (
                         <p key={appointment.key} className="text-base">
                           {appointment.date} {appointment.time}
                         </p>
                       );
-                    })}
-                    <button
+                    }))}
+                    {(data.appointments.length > 0) && (<button
                       className="text-blue-500 font-semibold italic hover:text-green-500 hover:underline"
                       onClick={() => handleModalView(key)}
                     >
                       View All
                     </button>
+                    )}
                   </span>
                 </TableCell>
                 <TableCell>

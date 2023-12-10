@@ -31,7 +31,14 @@ const InfoModal = ({ setIsShowModal, userData, selectedID }) => {
           <div className="mb-2">
             <p className="text-sm font-semibold text-gray-400">Appointments:</p>
             <p className="text-base font-medium text-black">
-              {userData[selectedID].appointments}
+              {userData[selectedID].appointments.map((appointment) => (
+                <div key={appointment}>
+                  <p className="text-base font-medium text-black">
+                    {appointment.date} - {appointment.time}
+                  </p>
+                </div>
+              ))
+              }
             </p>
           </div>
 
