@@ -20,7 +20,6 @@ function ClientData() {
 
   const [editingNodeId, setEditingNodeId] = useState(null);
 
-  const editingNodeIdRef = useRef(null);
 
   const updateItem = (id, value, fieldName) => {
     console.log(id, value, fieldName);
@@ -28,19 +27,16 @@ function ClientData() {
     const data = allUserData;
     data[id][fieldName] = value;
     setAllUserData({ ...data });
-    // setIsEditing(false);
   };
 
   const handleClick = (id) => {
     console.log("id", id);
     if (isEditing) {
       setEditingNodeId(id);
-      // update editingNodeIdRef
-      editingNodeIdRef.current = id;
       setIsEditing(false);
     } else {
       setIsEditing(true);
-      // setEditingNodeId(null);
+      setEditingNodeId(null);
     }
   };
 
@@ -62,24 +58,7 @@ function ClientData() {
           key: crypto.randomUUID(),
         },
       ],
-    },
-    cde: {
-      key: crypto.randomUUID(),
-      firstName: "John",
-      lastName: "Doe",
-      location: "Bangalore",
-      noOfAppointments: "2",
-      appointments: [
-        {
-          id: "A1",
-          date: "2021-01-01",
-          time: "10:00 AM",
-          duration: "30",
-          status: "Completed",
-          key: crypto.randomUUID(),
-        },
-      ],
-    },
+    }
   };
 
   useEffect(() => {
