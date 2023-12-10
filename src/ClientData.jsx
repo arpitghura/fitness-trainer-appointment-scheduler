@@ -20,7 +20,6 @@ function ClientData() {
 
   const [editingNodeId, setEditingNodeId] = useState(null);
 
-
   const updateItem = (id, value, fieldName) => {
     console.log(id, value, fieldName);
     console.log(allUserData);
@@ -58,7 +57,7 @@ function ClientData() {
           key: crypto.randomUUID(),
         },
       ],
-    }
+    },
   };
 
   useEffect(() => {
