@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import {
-  TableCell,
-  TableRow
-} from "flowbite-react";
+import { TableCell, TableRow } from "flowbite-react";
 
-const AddUser = ( {setIsAddUser, allusers, setAllUsers} ) => {
+const AddUser = ({ setIsAddUser, allusers, setAllUsers }) => {
   const userData = {};
 
   const [firstName, setFirstName] = useState("");
@@ -15,27 +12,42 @@ const AddUser = ( {setIsAddUser, allusers, setAllUsers} ) => {
 
   const generateObject = (id, firstName, lastName, location) => {
     const appointments = [];
-  
-    return Object.assign({}, {
-      id,
-      firstName,
-      lastName,
-      location,
-      appointments,
-    });
+
+    return Object.assign(
+      {},
+      {
+        id,
+        firstName,
+        lastName,
+        location,
+        appointments,
+      }
+    );
   };
 
   const handleAddUserData = () => {
-    if(firstName !== "" && lastName !== "" && location !== "" && appointments !== ""){
-    const id = crypto.randomUUID();
-    userData[id] = generateObject(id, firstName, lastName, location, appointments)
-    setAllUsers({...allusers, ...userData})
-    console.log(allusers)
-    localStorage.setItem('appointments', {...allusers})
-    setIsAddUser(false);
-    }
-    else{
-      toast.error('Please Fill all the fields!', { position: toast.POSITION.TOP_CENTER })
+    if (
+      firstName !== "" &&
+      lastName !== "" &&
+      location !== "" &&
+      appointments !== ""
+    ) {
+      const id = crypto.randomUUID();
+      userData[id] = generateObject(
+        id,
+        firstName,
+        lastName,
+        location,
+        appointments
+      );
+      setAllUsers({ ...allusers, ...userData });
+      console.log(allusers);
+      localStorage.setItem("appointments", { ...allusers });
+      setIsAddUser(false);
+    } else {
+      toast.error("Please Fill all the fields!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
     }
   };
 

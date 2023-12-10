@@ -7,7 +7,7 @@ export const EditableCell = ({
   updateItem, // This is a custom function that we supplied to our table instance
   id: id,
   inputName,
-  editingNodeId
+  editingNodeId,
 }) => {
   // We need to keep and update the state of the cell normally
   const [value, setValue] = useState(initialValue);

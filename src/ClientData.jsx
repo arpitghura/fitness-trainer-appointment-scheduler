@@ -19,7 +19,8 @@ function ClientData() {
   const [allUserData, setAllUserData] = useState({});
 
   const [editingNodeId, setEditingNodeId] = useState(null);
-  const [selectedNodeIdForModalView, setSelectedNodeIdForModalView] = useState(null)
+  const [selectedNodeIdForModalView, setSelectedNodeIdForModalView] =
+    useState(null);
 
   const updateItem = (id, value, fieldName) => {
     console.log(id, value, fieldName);
@@ -37,8 +38,8 @@ function ClientData() {
 
   const handleModalView = (id) => {
     setIsShowModal(true);
-    setSelectedNodeIdForModalView(id)
-  }
+    setSelectedNodeIdForModalView(id);
+  };
 
   // const dataTest = {
   //   abc: {
@@ -182,7 +183,11 @@ function ClientData() {
       </div>
 
       {isShowModal && (
-        <InfoModal setIsShowModal={setIsShowModal} userData={allUserData} selectedID={selectedNodeIdForModalView}/>
+        <InfoModal
+          setIsShowModal={setIsShowModal}
+          userData={allUserData}
+          selectedID={selectedNodeIdForModalView}
+        />
       )}
     </div>
   );
