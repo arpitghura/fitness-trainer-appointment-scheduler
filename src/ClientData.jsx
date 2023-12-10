@@ -30,35 +30,30 @@ function ClientData() {
 
   const handleClick = (id) => {
     console.log("id", id);
-    if (isEditing) {
-      setEditingNodeId(id);
-      setIsEditing(false);
-    } else {
-      setIsEditing(true);
-      setEditingNodeId(null);
-    }
+    setIsEditing((prevState) => !prevState); // Update isEditing
+    setEditingNodeId(id); // Update editingNodeId
   };
 
-  const dataTest = {
-    abc: {
-      id: "s1",
-      key: crypto.randomUUID(),
-      firstName: "John",
-      lastName: "Doe",
-      location: "Bangalore",
-      noOfAppointments: "2",
-      appointments: [
-        {
-          id: "A1",
-          date: "2021-01-01",
-          time: "10:00 AM",
-          duration: "30",
-          status: "Completed",
-          key: crypto.randomUUID(),
-        },
-      ],
-    },
-  };
+  // const dataTest = {
+  //   abc: {
+  //     id: "s1",
+  //     key: crypto.randomUUID(),
+  //     firstName: "John",
+  //     lastName: "Doe",
+  //     location: "Bangalore",
+  //     noOfAppointments: "2",
+  //     appointments: [
+  //       {
+  //         id: "A1",
+  //         date: "2021-01-01",
+  //         time: "10:00 AM",
+  //         duration: "30",
+  //         status: "Completed",
+  //         key: crypto.randomUUID(),
+  //       },
+  //     ],
+  //   },
+  // };
 
   useEffect(() => {
     const dataInObject = JSON.parse(localStorage.getItem("appointments"));
